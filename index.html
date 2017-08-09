@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Josh's page</title>
+        <script
+          src="http://code.jquery.com/jquery-3.2.1.min.js"
+          integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+          crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function(){
+                $.get("https://1m1j8k4rtldg.statuspage.io/api/v2/status.json", function(res) {
+                    
+                    var status = res.status.description;
+                    $("#status").html(status);
+
+
+                }, "json");
+
+               $.get("https://1m1j8k4rtldg.statuspage.io/api/v2/incidents.json", function(res) {
+                    for(var i = 0; i < res.incidents.length; i++) {
+                        console.log(res.incidents[i].incident_updates);
+                        var incidents = res.incidents[i].incident_updates;
+                    }
+                    for(var j = 0; j < incidents.length; j++) {
+                        console.log(incidents[j]);
+                    }
+                    // console.log(res.incidents.incident_updates.body);
+                    // $("#incidents").html(incidents);
+
+
+                }, "json"); 
+
+
+
+
+            // $.get("http://pokeapi.co/api/v1/pokemon/1/", function(res) {
+            //     for(var i = 0; i < res.types.length; i++) {
+            //         console.log(res.types[i].name);
+            //     }
+            // }, "json");
+
+            // var html_str = "";
+            //         html_str += "<h4>Types</h4>";
+            //         html_str += "<ul>"; 
+            //         for(var i = 0; i < res.types.length; i++) {
+            //             html_str += "<li>" + res.types[i].name + "</li>";
+            //         }
+            //         html_str += "</ul>";
+            //      
+            //     }, "json"); 
+            })
+        </script>
+    </head>
+    <body>
+        <div id="status">
+        
+        </div>
+    </body>
+</html>
+
